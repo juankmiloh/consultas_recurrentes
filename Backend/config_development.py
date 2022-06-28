@@ -1,0 +1,6 @@
+import os
+
+DEBUG = True
+PUBLIC = False
+SQLALCHEMY_TRACK_MODIFICATIONS = False
+SQLALCHEMY_DATABASE_URI = 'oracle://super:Veri1234@172.16.32.117:1521/xe'
