@@ -29,11 +29,11 @@ class ConsultaService:
             OutputArray.append(outputObj)               
         return OutputArray
     
-    # def get_shortexecution(self, consulta_repository: ConsultaRepository, procedimiento, ano, mes, idempresa, idconsulta):
-    #     obj = {'procedimiento': procedimiento, 'ano': ano, 'mes': mes, 'idempresa': idempresa, 'idconsulta': idconsulta}
-    #     data = consulta_repository.get_shortexecution_bd(obj)            
-    #     return data
-    
-    def get_shortexecution(self, consulta_repository: ConsultaRepository, model):
-        data = consulta_repository.get_shortexecution_bd(model)
+    def get_shortexecution(self, consulta_repository: ConsultaRepository, procedimiento, ano, mes, idempresa, idconsulta):
+        obj = {'procedimiento': procedimiento, 'ano': ano, 'mes': mes, 'idempresa': idempresa, 'idconsulta': idconsulta}
+        data = consulta_repository.get_shortexecution_bd(obj)            
         return data
+    
+    # def get_shortexecution(self, consulta_repository: ConsultaRepository, model):
+    #     data = consulta_repository.get_shortexecution_bd(model)
+    #     return data
