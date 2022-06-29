@@ -228,125 +228,189 @@ export const asyncRoutes = [{
 
 // vistas adminsitrador
 {
-    path: '/procesos',
+    path: '/datosAbiertos',
     component: Layout,
-    alwaysShow: true, // will always show the root menu
-    name: 'Expedientes',
-    redirect: '/procesos/curso',
-    meta: {
-        title: 'Expedientes',
-        icon: 'form',
-        roles: ['administrador', 'proyectista', 'revisor', 'consulta'] // you can set roles in root nav
-    },
-    children: [{
-        path: 'curso',
-        component: () =>
-            import('@/views/proceso/Lista'),
-        name: 'Curso',
-        meta: { title: 'En curso', noCache: false, roles: ['administrador', 'proyectista', 'revisor'] }
-    },
-    {
-        path: 'historico',
-        component: () =>
-            import('@/views/historico/listar/General'),
-        name: 'Historico',
-        meta: { title: 'Histórico', noCache: false, roles: ['revisor', 'proyectista', 'consulta'] }
-    },
-    {
-        path: 'detalle/:id',
-        // path: 'detalle/:id/:servicios/:usuarios',
-        // path: 'detalle/:id/:usuarios/:servicios/:empresas',
-        // path: 'detalle',
-        component: () =>
-            import('@/views/proceso/Detalle'),
-        name: 'DetalleProceso',
-        meta: { title: 'Detalle proceso', noCache: false, activeMenu: '/procesos/curso', roles: ['administrador', 'proyectista', 'revisor'] },
-        hidden: true
-    },
-    ]
-},
-{
-    path: '/upload',
-    component: Layout,
-    alwaysShow: true, // will always show the root menu
-    name: 'Upload',
-    redirect: '/',
-    meta: {
-        title: 'Cargar',
-        icon: 'guide',
-        roles: ['administrador'] // you can set roles in root nav
-    },
-    children: [{
-        path: 'cargarProcesos',
-        component: () => import('@/views/proceso/components/CargarProcesos'),
-        name: 'cargarProcesos',
-        meta: { title: 'Expedientes', roles: ['administrador'] }
-    },
-    {
-        path: 'historico',
-        component: () => import('@/views/historico/cargar/index'),
-        name: 'cargarHistorico',
-        redirect: '/upload/historico/info_general',
-        meta: { title: 'Histórico', noCache: false, roles: ['administrador'] },
-        children: [{
-            path: 'info_general',
-            component: () => import('@/views/historico/cargar/General'),
-            name: 'info_general',
-            meta: { title: 'Info general', roles: ['administrador'] }
-        },
-        {
-            path: 'info_especifica',
-            component: () => import('@/views/historico/cargar/Especifico'),
-            name: 'info_especifica',
-            meta: { title: 'Info específica', noCache: false, roles: ['administrador'] }
-        }]
-    }]
-},
-{
-    path: '/informe',
-    component: Layout,
-    redirect: '/informe/pactivos',
-    alwaysShow: true, // will always show the root menu
-    name: 'informe',
-    meta: {
-        title: 'Informes',
-        icon: 'chart',
-        roles: ['consulta'] // you can set roles in root nav
-    },
     children: [
-        // {
-        //       path: 'page',
-        //       component: () =>
-        //           import ('@/views/permission/page'),
-        //       name: 'PagePermission',
-        //       meta: {
-        //           title: 'Page Permission',
-        //           roles: ['proyectista', 'revisor'] // or you can only set roles in sub nav
-        //       }
-        //   },
-        // {
-        //     path: 'directive',
-        //     component: () =>
-        //         import ('@/views/permission/directive'),
-        //     name: 'DirectivePermission',
-        //     meta: {
-        //         title: 'Directive Permission'
-        //             // if do not set roles, means: this page does not require permission
-        //     }
-        // },
-        {
-            path: 'pactivos',
-            component: () =>
-                import('@/views/informe/Expedientes'),
-            name: 'procesos_activos',
-            meta: {
-                title: 'Expedientes',
-                // icon: 'excel',
-                roles: ['consulta']
-            }
-        },
+    {
+        path: 'index',
+        component: () => import('@/views/datosAbiertos'),
+        name: 'datosAbiertos',
+        meta: {
+            title: 'Datos abiertos',
+            icon: 'education',
+            roles: ['consulta'] // you can set roles in root nav
+        }
+    }
     ]
 },
+{
+    path: '/consultasIG',
+    component: Layout,
+    children: [
+    {
+        path: 'index',
+        component: () => import('@/views/consultasIG'),
+        name: 'consultasIG',
+        meta: {
+            title: 'Consultas IG',
+            icon: 'documentation',
+            roles: ['consulta'] // you can set roles in root nav
+        }
+    }
+    ]
+},
+{
+    path: '/recurrentes',
+    component: Layout,
+    children: [
+    {
+        path: 'index',
+        component: () => import('@/views/recurrentes'),
+        name: 'recurrentes',
+        meta: {
+            title: 'Consultas recurrentes',
+            icon: 'nested',
+            roles: ['consulta'] // you can set roles in root nav
+        }
+    }
+    ]
+},
+{
+    path: '/formatos',
+    component: Layout,
+    children: [
+    {
+        path: 'index',
+        component: () => import('@/views/formatos'),
+        name: 'formatos',
+        meta: {
+            title: 'Consulta formatos',
+            icon: 'clipboard',
+            roles: ['consulta'] // you can set roles in root nav
+        }
+    }
+    ]
+},
+// {
+//     path: '/procesos',
+//     component: Layout,
+//     alwaysShow: true, // will always show the root menu
+//     name: 'Expedientes',
+//     redirect: '/procesos/curso',
+//     meta: {
+//         title: 'Expedientes',
+//         icon: 'form',
+//         roles: ['administrador', 'proyectista', 'revisor', 'consulta'] // you can set roles in root nav
+//     },
+//     children: [{
+//         path: 'curso',
+//         component: () =>
+//             import('@/views/proceso/Lista'),
+//         name: 'Curso',
+//         meta: { title: 'En curso', noCache: false, roles: ['administrador', 'proyectista', 'revisor'] }
+//     },
+//     {
+//         path: 'historico',
+//         component: () =>
+//             import('@/views/historico/listar/General'),
+//         name: 'Historico',
+//         meta: { title: 'Histórico', noCache: false, roles: ['revisor', 'proyectista', 'consulta'] }
+//     },
+//     {
+//         path: 'detalle/:id',
+//         // path: 'detalle/:id/:servicios/:usuarios',
+//         // path: 'detalle/:id/:usuarios/:servicios/:empresas',
+//         // path: 'detalle',
+//         component: () =>
+//             import('@/views/proceso/Detalle'),
+//         name: 'DetalleProceso',
+//         meta: { title: 'Detalle proceso', noCache: false, activeMenu: '/procesos/curso', roles: ['administrador', 'proyectista', 'revisor'] },
+//         hidden: true
+//     },
+//     ]
+// },
+// {
+//     path: '/upload',
+//     component: Layout,
+//     alwaysShow: true, // will always show the root menu
+//     name: 'Upload',
+//     redirect: '/',
+//     meta: {
+//         title: 'Cargar',
+//         icon: 'guide',
+//         roles: ['administrador'] // you can set roles in root nav
+//     },
+//     children: [{
+//         path: 'cargarProcesos',
+//         component: () => import('@/views/proceso/components/CargarProcesos'),
+//         name: 'cargarProcesos',
+//         meta: { title: 'Expedientes', roles: ['administrador'] }
+//     },
+//     {
+//         path: 'historico',
+//         component: () => import('@/views/historico/cargar/index'),
+//         name: 'cargarHistorico',
+//         redirect: '/upload/historico/info_general',
+//         meta: { title: 'Histórico', noCache: false, roles: ['administrador'] },
+//         children: [{
+//             path: 'info_general',
+//             component: () => import('@/views/historico/cargar/General'),
+//             name: 'info_general',
+//             meta: { title: 'Info general', roles: ['administrador'] }
+//         },
+//         {
+//             path: 'info_especifica',
+//             component: () => import('@/views/historico/cargar/Especifico'),
+//             name: 'info_especifica',
+//             meta: { title: 'Info específica', noCache: false, roles: ['administrador'] }
+//         }]
+//     }]
+// },
+// {
+//     path: '/informe',
+//     component: Layout,
+//     redirect: '/informe/pactivos',
+//     alwaysShow: true, // will always show the root menu
+//     name: 'informe',
+//     meta: {
+//         title: 'Informes',
+//         icon: 'chart',
+//         roles: ['consulta'] // you can set roles in root nav
+//     },
+//     children: [
+//         // {
+//         //       path: 'page',
+//         //       component: () =>
+//         //           import ('@/views/permission/page'),
+//         //       name: 'PagePermission',
+//         //       meta: {
+//         //           title: 'Page Permission',
+//         //           roles: ['proyectista', 'revisor'] // or you can only set roles in sub nav
+//         //       }
+//         //   },
+//         // {
+//         //     path: 'directive',
+//         //     component: () =>
+//         //         import ('@/views/permission/directive'),
+//         //     name: 'DirectivePermission',
+//         //     meta: {
+//         //         title: 'Directive Permission'
+//         //             // if do not set roles, means: this page does not require permission
+//         //     }
+//         // },
+//         {
+//             path: 'pactivos',
+//             component: () =>
+//                 import('@/views/informe/Expedientes'),
+//             name: 'procesos_activos',
+//             meta: {
+//                 title: 'Expedientes',
+//                 // icon: 'excel',
+//                 roles: ['consulta']
+//             }
+//         },
+//     ]
+// },
 // {
 //     path: '/informe',
 //     component: Layout,

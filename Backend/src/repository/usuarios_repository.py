@@ -13,9 +13,9 @@ class UsuariosRepository:
         self.db = db
 
     def autenticar_usuario(self, usuario):
-        # print('--------------------------------------------')
-        # print('LOGIN USUARIO - >', usuario)
-        # print('--------------------------------------------')
+        print('--------------------------------------------')
+        print('LOGIN USUARIO - >', usuario)
+        print('--------------------------------------------')
         if usuario["loginGestor"] == True: # Si se loguea con TOKEN del gestor
             return usuario["token"]
         else: # Si se loguea con usuario y password / Se procede a loguear con gestor para obtener token de acceso
@@ -55,7 +55,7 @@ class UsuariosRepository:
             AND A.ID_PERFIL = P.ID_PERFIL
             AND P.ID_ROL = R.ID_ROL
             AND P.ID_APLICATIVO = APP.ID_APLICATIVO
-            AND P.ID_APLICATIVO = 3
+            AND P.ID_APLICATIVO = 9
             AND P.ID_ROL = 6
             ORDER BY U.ID_USUARIO, P.ID_APLICATIVO;
         '''
@@ -71,7 +71,7 @@ class UsuariosRepository:
             AND A.ID_PERFIL = P.ID_PERFIL
             AND P.ID_ROL = R.ID_ROL
             AND P.ID_APLICATIVO = APP.ID_APLICATIVO
-            AND P.ID_APLICATIVO = 3
+            AND P.ID_APLICATIVO = 9
             AND P.ID_ROL = 3
             ORDER BY U.ID_USUARIO, P.ID_APLICATIVO;
         '''
@@ -81,7 +81,7 @@ class UsuariosRepository:
         sql = '''
             SELECT P.ID_PERFIL, R.NOMBRE FROM public."Roles" R, public."Perfiles" P
             WHERE R.ID_ROL = P.ID_ROL
-            AND P.ID_APLICATIVO = 3;
+            AND P.ID_APLICATIVO = 9;
         '''
         return self.db.engine.execute(text(sql)).fetchall()
     
@@ -121,7 +121,7 @@ class UsuariosRepository:
             AND A.ID_PERFIL = P.ID_PERFIL
             AND P.ID_ROL = R.ID_ROL
             AND U.ID_AREA = AREA.ID_AREA
-            AND P.ID_APLICATIVO = 3
+            AND P.ID_APLICATIVO = 9
             ORDER BY U.NOMBRE, U.ID_USUARIO;
         '''
         return self.db.engine.execute(text(sql)).fetchall()
@@ -223,7 +223,7 @@ class UsuariosRepository:
                 SELECT P.ID_PERFIL FROM public."Accesos" A, public."Perfiles" P, public."Roles" R
                 WHERE A.ID_PERFIL = P.ID_PERFIL
                 AND P.ID_ROL = R.ID_ROL
-                AND P.ID_APLICATIVO = 3
+                AND P.ID_APLICATIVO = 9
                 AND A.ID_USUARIO = :IDUSUARIO_ARG
             )
             AND ID_USUARIO = :IDUSUARIO_ARG;

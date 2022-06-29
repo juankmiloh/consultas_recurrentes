@@ -16,7 +16,7 @@
 <script>
 import logPage from '../../../assets/superservicios1.png'
 import { mapGetters } from 'vuex'
-import { getDependencia } from '@/api/procesosDIEG/dependencia'
+import { getDependencia } from '@/api/recurrentes/dependencia'
 
 export default {
   name: 'SidebarLogo',

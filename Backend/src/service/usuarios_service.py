@@ -37,7 +37,7 @@ class UsuariosService:
         privilegio = ''
 
         for result in dataUser["Accesos"]:
-            if result["Perfil"]["id_aplicativo"] == 3:
+            if result["Perfil"]["id_aplicativo"] == 9:
                 privilegio = privilegio + " / " + result["Perfil"]["Rol"]["nombre"]
                 roles.append(result["Perfil"]["Rol"]["nombre"])
                 responseGetInfo = {

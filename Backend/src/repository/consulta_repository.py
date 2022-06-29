@@ -79,4 +79,5 @@ class ConsultaRepository:
         conn1.close()
         
         # return OutputArray
+        # http://localhost:5055/recurrentes/api/shortexecution?procedimiento=SP_CONS_COMPONENTES_TARIFARIOS&ano=2021&mes=1&idempresa=22910&idconsulta=5
         return send_file(file, as_attachment=True)

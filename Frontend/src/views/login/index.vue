@@ -8,8 +8,8 @@
           <img v-show="x.matches" :src="logoGov" style="margin-top: 1.4em;">
         </el-col>
         <el-col :xs="18" :md="15" style="border: 0px solid red;">
-          <label v-show="!x.matches" style="font-size: x-large; color: white;">|&nbsp;&nbsp;&nbsp;Dirección de investigaciones DIEG</label>
-          <label v-show="x.matches" style="font-size: 1em; color: white;">|&nbsp;&nbsp;&nbsp;Dirección de investigaciones</label>
+          <label v-show="!x.matches" style="font-size: x-large; color: white;">|&nbsp;&nbsp;&nbsp;Consultas concurrentes</label>
+          <label v-show="x.matches" style="font-size: 1em; color: white;">|&nbsp;&nbsp;&nbsp;Consultas concurrentes</label>
         </el-col>
         <el-col :xs="0" :md="7" style="border: 0px solid red; text-align: right;">
           <img :src="logSuper" style="margin-top: 0.5%; height: 3.3em;">
@@ -75,7 +75,7 @@
 
     <div class="footer-login">
       <span class="textoFooter">
-        ::. . SUPERSERVICIOS - DIEG v3.0 ©&nbsp;2022 . .::
+        ::. . SUPERSERVICIOS - RECURRENTES v1.0 ©&nbsp;2022 . .::
       </span>
     </div>
   </el-container>
@@ -85,7 +85,7 @@
 import { validUserEmail } from '@/utils/validate'
 import logSuper from '@/assets/super_dnp.jpg'
 import logoGov from '@/assets/logo_gov.svg'
-import { getListNicknames, getListCorreos } from '@/api/procesosDIEG/usuarios'
+import { getListNicknames, getListCorreos } from '@/api/recurrentes/usuarios'
 // import md5 from 'md5'
 import { mapGetters } from 'vuex'
 

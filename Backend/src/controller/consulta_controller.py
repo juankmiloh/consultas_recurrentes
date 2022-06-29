@@ -16,12 +16,17 @@ def consulta_detalle(consulta_service: ConsultaService, consulta_repository: Con
     idCategoria = request.args.get('category_id', default=0, type=int)
     return json.dumps(consulta_service.get_consulta_detalle(consulta_repository, idCategoria))
 
-@controller.route(API_ROOT_PATH + 'shortexecution', methods=['GET'])
+# @controller.route(API_ROOT_PATH + 'shortexecution', methods=['GET'])
+# def shortexecution(consulta_service: ConsultaService, consulta_repository: ConsultaRepository):
+#     procedimiento = request.args.get('procedimiento', default=0, type=str)
+#     ano = request.args.get('ano', default=0, type=int)
+#     mes = request.args.get('mes', default=0, type=int)
+#     idempresa = request.args.get('idempresa', default=0, type=int)
+#     idconsulta = request.args.get('idconsulta', default=0, type=int)
+#     # return json.dumps(consulta_service.get_shortexecution(consulta_repository, procedimiento, ano, mes, idempresa, idconsulta))
+#     return consulta_service.get_shortexecution(consulta_repository, procedimiento, ano, mes, idempresa, idconsulta)
+
+@controller.route(API_ROOT_PATH + 'shortexecution', methods=['POST'])
 def shortexecution(consulta_service: ConsultaService, consulta_repository: ConsultaRepository):
-    procedimiento = request.args.get('procedimiento', default=0, type=str)
-    ano = request.args.get('ano', default=0, type=int)
-    mes = request.args.get('mes', default=0, type=int)
-    idempresa = request.args.get('idempresa', default=0, type=int)
-    idconsulta = request.args.get('idconsulta', default=0, type=int)
-    # return json.dumps(consulta_service.get_shortexecution(consulta_repository, procedimiento, ano, mes, idempresa, idconsulta))
-    return consulta_service.get_shortexecution(consulta_repository, procedimiento, ano, mes, idempresa, idconsulta)
+    model = request.json
+    return consulta_service.get_shortexecution(consulta_repository, model)

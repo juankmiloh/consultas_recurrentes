@@ -52,9 +52,9 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { getAllUsuarios } from '@/api/procesosDIEG/usuarios'
-import { deleteUsuario } from '@/api/procesosDIEG/usuarios'
-import { getListNicknames } from '@/api/procesosDIEG/usuarios'
+import { getAllUsuarios } from '@/api/recurrentes/usuarios'
+import { deleteUsuario } from '@/api/recurrentes/usuarios'
+import { getListNicknames } from '@/api/recurrentes/usuarios'
 
 export default {
   props: {

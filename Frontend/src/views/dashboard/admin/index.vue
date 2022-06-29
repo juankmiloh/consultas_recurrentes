@@ -38,7 +38,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import logSuper from '@/assets/superservicios1.png'
-import { getDependencia } from '@/api/procesosDIEG/dependencia'
+import { getDependencia } from '@/api/recurrentes/dependencia'
 
 export default {
   name: 'DashboardDefault',

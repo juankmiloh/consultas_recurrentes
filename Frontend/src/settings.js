@@ -1,5 +1,5 @@
 module.exports = {
-  title: 'DIEG Superservicios',
+  title: 'Consultas recurrentes',
 
   /**
    * @type {boolean} true | false

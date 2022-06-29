@@ -172,8 +172,8 @@
 <script>
 import { validUsername, validUserEmail } from '@/utils/validate'
 import { mapGetters } from 'vuex'
-import { createUser, updateUsuario, getListRol } from '@/api/procesosDIEG/usuarios'
-import { getArea } from '@/api/procesosDIEG/dependencia'
+import { createUser, updateUsuario, getListRol } from '@/api/recurrentes/usuarios'
+import { getArea } from '@/api/recurrentes/dependencia'
 import { CONSTANTS } from '@/constants/constants'
 import { DATA } from '@/data/ImgUser'
 import ListaUsers from './components/user/ListaUsers'
@@ -355,7 +355,7 @@ export default {
             modelUser.genero = this.dataGenero.find((genero) => genero.nombre === modelUser.genero).idgenero
             modelUser.dependencia = this.dependencia
             modelUser.apiGestor = process.env.VUE_APP_GESTOR_API
-            if (process.env.VUE_APP_BASE_API === 'procesosDIEG/api') {
+            if (process.env.VUE_APP_BASE_API === 'recurrentes/api') {
               modelUser.api = `${window.location.origin}/${process.env.VUE_APP_BASE_API}` // Se envia URL del host del backend
             } else {
               modelUser.api = process.env.VUE_APP_BASE_API // Se envia URL de localhost
@@ -384,7 +384,7 @@ export default {
             modelUser.nicknameold = this.nicknameold
             modelUser.emailold = this.emailold
             modelUser.apiGestor = process.env.VUE_APP_GESTOR_API
-            if (process.env.VUE_APP_BASE_API === 'procesosDIEG/api') {
+            if (process.env.VUE_APP_BASE_API === 'recurrentes/api') {
               modelUser.api = `${window.location.origin}/${process.env.VUE_APP_BASE_API}` // Se envia URL del host del backend
             } else {
               modelUser.api = process.env.VUE_APP_BASE_API // Se envia URL de localhost
