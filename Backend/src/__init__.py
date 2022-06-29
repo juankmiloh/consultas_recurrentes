@@ -1,6 +1,7 @@
 
 import os
 import logging
+from pickle import NONE
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_injector import FlaskInjector
@@ -38,6 +39,7 @@ def create_app():
     app.config.from_object('config_' + config_name)
 
     postgresdb = create_engine(app.config.get("SQLALCHEMY_DATABASE_POSTGRES_URI")).connect()
+    # postgresdb = None
 
     db = SQLAlchemy()
     db.init_app(app)
