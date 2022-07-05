@@ -8,8 +8,8 @@
           <img v-show="x.matches" :src="logoGov" style="margin-top: 1.4em;">
         </el-col>
         <el-col :xs="18" :md="15" style="border: 0px solid red;">
-          <label v-show="!x.matches" style="font-size: x-large; color: white;">|&nbsp;&nbsp;&nbsp;Consultas concurrentes</label>
-          <label v-show="x.matches" style="font-size: 1em; color: white;">|&nbsp;&nbsp;&nbsp;Consultas concurrentes</label>
+          <label v-show="!x.matches" style="font-size: x-large; color: white;">|&nbsp;&nbsp;&nbsp;Consultas recurrentes</label>
+          <label v-show="x.matches" style="font-size: 1em; color: white;">|&nbsp;&nbsp;&nbsp;Consultas recurrentes</label>
         </el-col>
         <el-col :xs="0" :md="7" style="border: 0px solid red; text-align: right;">
           <img :src="logSuper" style="margin-top: 0.5%; height: 3.3em;">
