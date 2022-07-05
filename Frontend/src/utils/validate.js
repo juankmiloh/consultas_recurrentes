@@ -30,10 +30,10 @@ export function validUsername(str) {
  */
  export function validUserEmail(str) {
     // aqui van los usuarios creados en tokens
-    // const usuarios = JSON.parse(window.localStorage.getItem('correos'))
+    const usuarios = JSON.parse(window.localStorage.getItem('correos'))
     // console.log('USUARIOS -> ', usuarios.data)
-    // const valid_map = usuarios.data // Cargar nombres de usuarios una vez entre al login
-    const valid_map = ['administrador', 'editor'] // Cargar usuarios de prueba (Cuando no hay conexion con el gestor)
+    const valid_map = usuarios.data // Cargar nombres de usuarios una vez entre al login
+    // const valid_map = ['administrador', 'editor'] // Cargar usuarios de prueba (Cuando no hay conexion con el gestor)
     return valid_map.indexOf(str.trim()) >= 0
   }
 

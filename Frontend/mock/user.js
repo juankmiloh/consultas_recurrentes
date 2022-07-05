@@ -80,66 +80,66 @@ const users = {
 
 export default [
     // user login
-    {
-        url: '/user/login',
-        type: 'post',
-        response: config => {
-            // console.log('config login -> ', config);
-            const { username } = config.body
-            console.log({ username });
-            const token = tokens[username]
+    // {
+    //     url: '/user/login',
+    //     type: 'post',
+    //     response: config => {
+    //         // console.log('config login -> ', config);
+    //         const { username } = config.body
+    //         console.log({ username });
+    //         const token = tokens[username]
 
-            // console.log('token :>> ', token)
+    //         // console.log('token :>> ', token)
 
-            // mock error
-            if (!token) {
-                return {
-                    code: 60204,
-                    message: 'Usuario y contraseña incorrectos.'
-                }
-            }
+    //         // mock error
+    //         if (!token) {
+    //             return {
+    //                 code: 60204,
+    //                 message: 'Usuario y contraseña incorrectos.'
+    //             }
+    //         }
 
-            return {
-                code: 20000,
-                data: token
-            }
-        }
-    },
+    //         return {
+    //             code: 20000,
+    //             data: token
+    //         }
+    //     }
+    // },
 
     // get user info
-    {
-        url: '/user/info\.*',
-        type: 'post',
-        response: config => {
-            // console.log('entro al token! -> ', config.body.token)
-            const { token } = config.body
-            // console.log('info :>> ', token)
-            const info = users[token]
+    // {
+    //     url: '/user/info\.*',
+    //     type: 'post',
+    //     response: config => {
+    //         // console.log('entro al token! -> ', config.body.token)
+    //         const { token } = config.body
+    //         // console.log('info :>> ', token)
+    //         const info = users[token]
 
-            // mock error
-            if (!info) {
-                return {
-                    code: 50008,
-                    message: 'Error de inicio de sesión, no se pueden obtener los detalles del usuario.'
-                }
-            }
+    //         // mock error
+    //         if (!info) {
+    //             return {
+    //                 code: 50008,
+    //                 message: 'Error de inicio de sesión, no se pueden obtener los detalles del usuario.'
+    //             }
+    //         }
 
-            return {
-                code: 20000,
-                data: info
-            }
-        }
-    },
+    //         return {
+    //             code: 20000,
+    //             data: info
+    //         }
+    //     }
+    // },
 
     // user logout
-    {
-        url: '/user/logout',
-        type: 'post',
-        response: _ => {
-            return {
-                code: 20000,
-                data: 'success'
-            }
-        }
-    }
+    // {
+    //     url: '/user/logout',
+    //     type: 'post',
+    //     response: _ => {
+    //         return {
+    //             code: 20000,
+    //             data: 'success'
+    //         }
+    //     }
+    // }
 ]
