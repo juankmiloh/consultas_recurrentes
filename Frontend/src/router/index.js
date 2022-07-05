@@ -138,7 +138,7 @@ export const asyncRoutes = [{
         path: 'index',
         component: () => import('@/views/datosAbiertos'),
         name: 'datosAbiertos',
-        meta: {title: 'Datos abiertos', icon: 'education', noCache: false, roles: ['consulta']}
+        meta: {title: 'Datos abiertos', icon: 'education', noCache: false, roles: ['administrador', 'consulta']}
     }]
 },
 {
@@ -150,25 +150,25 @@ export const asyncRoutes = [{
     meta: {
         title: 'Consultas',
         icon: 'form',
-        roles: ['consulta'] // you can set roles in root nav
+        roles: ['administrador', 'consulta'] // you can set roles in root nav
     },
     children: [{
             path: 'formatos',
             component: () => import('@/views/formatos'),
             name: 'formatos',
-            meta: { title: 'Consulta formatos', noCache: false, roles: ['consulta'] }
+            meta: { title: 'Consulta formatos', noCache: false, roles: ['administrador', 'consulta'] }
         },
         {
             path: 'consultasIG',
             component: () => import('@/views/consultasIG'),
             name: 'consultasIG',
-            meta: {title: 'Consulta IG', noCache: false, roles: ['consulta']}
+            meta: {title: 'Consulta IG', noCache: false, roles: ['administrador', 'consulta']}
         },
         {
             path: 'recurrentes',
             component: () => import('@/views/recurrentes'),
             name: 'recurrentes',
-            meta: {title: 'Consulta recurrentes', noCache: false, roles: ['consulta']}
+            meta: {title: 'Consulta recurrentes', noCache: false, roles: ['administrador', 'consulta']}
         }
     ]
 },

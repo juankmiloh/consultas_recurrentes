@@ -1,0 +1,9 @@
+---------------------------------------------------------------------------
+-- PASOS PARA UTILIZAR EL CODIGO FUENTE DEL FRONTEND SIN LOGUEO CON BASE DE DATOS | NI GESTOR DE APPS
+---------------------------------------------------------------------------
+1. Modificar el archivo \Backend\src\__init__.py --> Descomentar o comentar líneas segun la base de datos que se quiera utilzar
+2. Modificar el archivo \Frontend\mock\user.js --> Descomentar las funciones de /user/login - /user/info - /user/logout
+3. Modificar el archivo \Frontend\src\router\index.js --> Ajustar los permisos de visualización de vistas segun el rol deseado
+4. Modificar el archivo \Frontend\src\utils\validate.js --> Ajustar la funcion validUserEmail(str) segun el API que corresponda
+5. Modificar el archivo \Frontend\src\views\login\index.vue --> Comentar las lineas (de la 245 a la 251) y para loguearse utilizar el nombre de usuario "administrador"
+6. Modificar el archivo \Frontend\src\views\dashboard\admin\index.vue --> Comentar las lineas (41) y (de la 61 a la 64) y descomentar la linea 60

@@ -114,10 +114,10 @@ export default {
       logSuper: logSuper,
       logoGov: logoGov,
       loginForm: {
-        // username: 'administrador',
-        // password: '123456'
-        username: 'jherreraa@superservicios.gov.co',
+        username: 'administrador',
         password: '123456'
+        // username: 'jherreraa@superservicios.gov.co',
+        // password: '123456'
       },
       loginRules: {
         username: [
@@ -242,13 +242,14 @@ export default {
             .dispatch('user/login', userInfo)
             .then((data) => {
               // console.log('store login --> ', data)
-              const userLogged = this.listCorreos.find(user => user.correo === this.loginForm.username.toLowerCase()).nombre
-              this.$notify({
-                title: `Hola ${userLogged}`,
-                message: `Se ha iniciado tu sesión exitosamente!`,
-                position: 'bottom-right',
-                type: 'success'
-              })
+              // const userLogged = this.listCorreos.find(user => user.correo === this.loginForm.username.toLowerCase()).nombre
+              // this.$notify({
+              //   title: `Hola ${userLogged}`,
+              //   message: `Se ha iniciado tu sesión exitosamente!`,
+              //   position: 'bottom-right',
+              //   type: 'success'
+              // })
+
               this.$router.push({ path: this.redirect || '/' })
               this.loading = false
               // this.loginForm.password = ''

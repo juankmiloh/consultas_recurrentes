@@ -173,7 +173,7 @@ export default {
     },
     async getShortexecution(iterator) {
       // console.log('getShortexecution -> ', iterator)
-      const url = `http://localhost:5000/recurrentes/api/shortexecution?procedimiento=${iterator.procedimiento}&ano=${this.model.ano}&mes=${this.model.mes}&idempresa=${this.model.idempresa}&idconsulta=${iterator.id_detalle}`
+      const url = `${process.env.VUE_APP_BASE_API}/shortexecution?procedimiento=${iterator.procedimiento}&ano=${this.model.ano}&mes=${this.model.mes}&idempresa=${this.model.idempresa}&idconsulta=${iterator.id_detalle}`
       // console.log('URL :>> ', url)
       window.open(url, '_self') // Linea para llamar el servicio que genera el .CSV
     },
