@@ -13,5 +13,5 @@ cx_Oracle
 pymongo==4.1.0
 simplejson
 pyaml
-# itsdangerous==2.0.1 # Cuando moleste la version de flask descomentar
+itsdangerous==2.0.1 # Cuando moleste la version de flask descomentar
 # mysqlclient
