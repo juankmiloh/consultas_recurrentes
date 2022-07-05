@@ -75,7 +75,7 @@
 
     <div class="footer-login">
       <span class="textoFooter">
-        ::. . SUPERSERVICIOS - RECURRENTES v1.0 ©&nbsp;2022 . .::
+        ::. . SUPERSERVICIOS - RECURRENTES v1.5 ©&nbsp;2022 . .::
       </span>
     </div>
   </el-container>
