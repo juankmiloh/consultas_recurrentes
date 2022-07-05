@@ -1,9 +1,6 @@
 import yaml
-import os
 import csv
-from sqlalchemy import create_engine
 from flask import send_file
-import cx_Oracle
 
 
 class ConsultaRepository:
@@ -11,62 +8,24 @@ class ConsultaRepository:
         self.db = db
 
     def get_consulta_bd(self, idServicio):
-        cursor = self.db.engine.raw_connection().cursor()
-        refCursor = self.db.engine.raw_connection().cursor()
-        cursor.callproc('SP_CONS_RECURRENTES', [idServicio, refCursor])
+        connection = self.db.acquire()
+        cursor = connection.cursor()
+        For_Consultas = connection.cursor()    
+        cursor.callproc('SP_CONS_RECURRENTES', [idServicio, For_Consultas])
+        vcon = For_Consultas.fetchall()
+        connection.close()
 
-        return refCursor.fetchall()
+        return vcon
     
     def get_consulta_detalle_bd(self, idCategoria):
-        cursor = self.db.engine.raw_connection().cursor()
-        refCursor = self.db.engine.raw_connection().cursor()
-        cursor.callproc('SP_CONS_DETALLES', [idCategoria, refCursor])
-
-        return refCursor.fetchall()
-
-    def start_pool(self, p):
-        # Generally a fixed-size pool is recommended, i.e. pool_min=pool_max.
-        # Here the pool contains 4 connections, which is fine for 4 conncurrent
-        # users.
-        # The "get mode" is chosen so that if all connections are already in use, any
-        # subsequent acquire() will wait for one to become available.
-        yaml_file = open("src/sources/config.yaml", 'r')
-        parsed_yaml_file = yaml.load(yaml_file, Loader=yaml.FullLoader)
-        pool_min = 4
-        pool_max = 4
-        pool_inc = 0
-        pool_gmd = cx_Oracle.SPOOL_ATTRVAL_WAIT
-    
-        if p==1:
-            oracle=parsed_yaml_file["oracle_parametros"]
-
-        if p==2:
-            oracle=parsed_yaml_file["oracle_formatos"]
-
-        if p==3:
-            oracle=parsed_yaml_file["oracle_server"]
-
-        dns=oracle['host']
-        userdb=oracle['user']
-        passw=oracle['passwd']
-
-        pool = cx_Oracle.SessionPool(user=userdb,  #os.environ.get("PYTHON_USERNAME"),
-                                    password=passw, #os.environ.get("PYTHON_PASSWORD"),
-                                    dsn=dns, #os.environ.get("PYTHON_CONNECTSTRING"),
-                                    min=pool_min,
-                                    max=pool_max,
-                                    increment=pool_inc,
-                                    threaded=True,
-                                    getmode=pool_gmd,
-                                    sessionCallback=self.init_session)
-        return pool
-
-    def init_session(self, connection, requestedTag_ignored):
+        connection = self.db.acquire()
         cursor = connection.cursor()
-        cursor.execute("""
-            ALTER SESSION SET
-            TIME_ZONE = 'UTC'
-            NLS_DATE_FORMAT = 'YYYY-MM-DD HH24:MI'""")
+        refCursorfor = connection.cursor()    
+        cursor.callproc('SP_CONS_DETALLES', [idCategoria, refCursorfor])
+        vcon = refCursorfor.fetchall()
+        connection.close()
+
+        return vcon
     
     def get_shortexecution_bd(self, items):
         # print('-------------------------------------')
@@ -74,8 +33,7 @@ class ConsultaRepository:
         # print('-------------------------------------')
         yaml_file = open("src/sources/config.yaml", 'r')
         parsed_yaml_file = yaml.load(yaml_file, Loader=yaml.FullLoader)
-        pool = self.start_pool(3)
-        connection = pool.acquire()
+        connection = self.db.acquire()
         cursor = connection.cursor()
         refCursorfor = connection.cursor()  
 
@@ -117,7 +75,8 @@ class ConsultaRepository:
             
                 OutputArray.append(Dict)
                 writer.writerows(OutputArray)
+
+        connection.close()
                 
         # return OutputArray
-        # http://localhost:5055/recurrentes/api/shortexecution?procedimiento=SP_CONS_COMPONENTES_TARIFARIOS&ano=2021&mes=1&idempresa=22910&idconsulta=5
         return send_file(file, as_attachment=True)

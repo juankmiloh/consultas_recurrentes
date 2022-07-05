@@ -25,8 +25,3 @@ def shortexecution(consulta_service: ConsultaService, consulta_repository: Consu
     idconsulta = request.args.get('idconsulta', default=0, type=int)
     # return json.dumps(consulta_service.get_shortexecution(consulta_repository, procedimiento, ano, mes, idempresa, idconsulta))
     return consulta_service.get_shortexecution(consulta_repository, procedimiento, ano, mes, idempresa, idconsulta)
-
-# @controller.route(API_ROOT_PATH + 'shortexecution', methods=['POST'])
-# def shortexecution(consulta_service: ConsultaService, consulta_repository: ConsultaRepository):
-#     model = request.json
-#     return consulta_service.get_shortexecution(consulta_repository, model)

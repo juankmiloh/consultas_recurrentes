@@ -1,13 +1,6 @@
 /* jshint esversion: 6 */
 /* eslint-disable */
 export const CONSTANTS = {
-    formItem: {
-        servicio: '',
-        consulta: '',
-        empresa: '',
-        ano: '',
-        mes: ''
-    },
     domItem: [
         {
             type: 'select',
@@ -25,7 +18,7 @@ export const CONSTANTS = {
         },
         {
             type: 'select',
-            prop: 'empresa',
+            prop: 'idempresa',
             label: 'Empresa',
             placeholder: 'Seleccione una empresa',
             disabled: false
@@ -47,44 +40,56 @@ export const CONSTANTS = {
     ],
     rulesFormItem: {
         servicio: [{
-            required: false,
+            required: true,
             message: 'Seleccione un servicio',
             trigger: 'change'
         }],
         consulta: [{
-            required: false,
+            required: true,
             message: 'Seleccione una consulta',
             trigger: 'change'
         }],
-        empresa: [{
-            required: false,
+        idempresa: [{
+            required: true,
             message: 'Seleccione una empresa',
             trigger: 'change'
         }],
         ano: [{
-            required: false,
+            required: true,
             message: 'Seleccione un año',
             trigger: 'change'
         }],
         mes: [{
-            required: false,
+            required: true,
             message: 'Seleccione un mes',
             trigger: 'change'
         }],
     },
     dataFormItem: {
         // Aqui van todos los arreglos de objetos de los controles select, radiobutton, etc...
-        servicio: [{
-            id: 1,
-            nombre: 'Persona natural'
-        },
-        {
-            id: 2,
-            nombre: 'Persona jurídica'
-        }],
+        servicio: [],
         consulta: [],
-        empresa: [],
+        idempresa: [],
         ano: [],
         mes: []
-    }
+    },
+    tableColumns: [
+        {
+            label: 'Id',
+            prop: 'id_detalle',
+            width: 50
+        },
+        {
+            label: 'Detalle',
+            prop: 'desc_det_consulta'
+        },
+        {
+            label: 'Procedimiento BD',
+            prop: 'procedimiento'
+        }
+    ],
+    tableData: [
+        {desc_det_consulta: 'Sin Agrupamiento', id_detalle: 11, procedimiento: 'SP_CONS_VENTAS_CILINDROS'},
+        {desc_det_consulta: 'Sin Agrupamiento', id_detalle: 10, procedimiento: 'SP_CONS_VENTAS_DISTRIBUCION'}
+    ],
 };

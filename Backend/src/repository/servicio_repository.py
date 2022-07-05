@@ -1,13 +1,13 @@
-from sqlalchemy.sql import text
-
-
 class ServicioRepository:
     def __init__(self, db):
         self.db = db
 
     def get_servicio_bd(self):
-        cursor = self.db.engine.raw_connection().cursor()
-        refCursor = self.db.engine.raw_connection().cursor()
+        connection = self.db.acquire()
+        cursor = connection.cursor()
+        refCursor = connection.cursor()
         cursor.callproc('SP_CONS_SERVICIOS', [refCursor])
+        vser = refCursor.fetchall()
+        connection.close()
 
-        return refCursor.fetchall()
+        return vser

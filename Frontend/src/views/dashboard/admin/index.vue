@@ -38,7 +38,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import logSuper from '@/assets/superservicios1.png'
-import { getDependencia } from '@/api/recurrentes/dependencia'
+// import { getDependencia } from '@/api/recurrentes/dependencia'
 
 export default {
   name: 'DashboardDefault',
@@ -57,10 +57,11 @@ export default {
   },
   methods: {
     async getInfoDependencia() {
-      await getDependencia(this.dependencia).then((response) => {
-        // console.log('Revisores -> ', response)
-        this.datosDependencia = response[0]
-      })
+      this.datosDependencia = { nombre: 'Superintendencia Delegada para Energía y Gas Combustible' }
+      // await getDependencia(this.dependencia).then((response) => {
+      //   // console.log('Revisores -> ', response)
+      //   this.datosDependencia = response[0]
+      // })
     }
   }
 }
