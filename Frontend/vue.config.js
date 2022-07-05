@@ -25,7 +25,7 @@ module.exports = {
      * Detail: https://cli.vuejs.org/config/#publicpath
      */
     // publicPath: process.env.NODE_ENV === 'development' ? '/' : '{{url_base}}',
-    publicPath: process.env.NODE_ENV === 'development' ? '/' : 'front/dist',
+    publicPath: process.env.NODE_ENV === 'development' ? '/' : 'recurrentes/front/dist',
     outputDir: '../Backend/front/dist',
     assetsDir: 'static',
     lintOnSave: process.env.NODE_ENV === 'development' ? 'error' : false,

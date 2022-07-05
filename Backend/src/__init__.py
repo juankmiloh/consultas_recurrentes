@@ -39,12 +39,11 @@ def create_app():
                 )
     app.config.from_object('config_' + config_name)
 
-    # postgresdb = create_engine(app.config.get("SQLALCHEMY_DATABASE_POSTGRES_URI")).connect()
-    postgresdb = None # Descomentar esta línea para omitir conexion con gestor
+    postgresdb = create_engine(app.config.get("SQLALCHEMY_DATABASE_POSTGRES_URI")).connect() # Comentar esta línea para omitir conexion con gestor
+    # postgresdb = None # Descomentar esta línea para omitir conexion con gestor
 
-    # db = SQLAlchemy()
-    db = start_pool(3)
-    # db.init_app(app)
+    db = start_pool(3) # Comentar esta línea para utilizar conexion con gestor en pruebas
+    # db = None # Descomentar esta línea para utilizar conexion con gestor
 
     injector = Injector([AppModule(db, postgresdb), RepositoryModule(db, postgresdb), ServiceModule()])
 
