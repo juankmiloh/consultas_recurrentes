@@ -57,46 +57,46 @@ def create_app():
 
     return app
 
-def start_pool(p):
-    # Generally a fixed-size pool is recommended, i.e. pool_min=pool_max.
-    # Here the pool contains 4 connections, which is fine for 4 conncurrent
-    # users.
-    # The "get mode" is chosen so that if all connections are already in use, any
-    # subsequent acquire() will wait for one to become available.
-    yaml_file = open("src/sources/config.yaml", 'r')
-    parsed_yaml_file = yaml.load(yaml_file, Loader=yaml.FullLoader)
-    pool_min = 4
-    pool_max = 4
-    pool_inc = 0
-    pool_gmd = cx_Oracle.SPOOL_ATTRVAL_WAIT
+# def start_pool(p):
+#     # Generally a fixed-size pool is recommended, i.e. pool_min=pool_max.
+#     # Here the pool contains 4 connections, which is fine for 4 conncurrent
+#     # users.
+#     # The "get mode" is chosen so that if all connections are already in use, any
+#     # subsequent acquire() will wait for one to become available.
+#     yaml_file = open("src/sources/config.yaml", 'r')
+#     parsed_yaml_file = yaml.load(yaml_file, Loader=yaml.FullLoader)
+#     pool_min = 4
+#     pool_max = 4
+#     pool_inc = 0
+#     pool_gmd = cx_Oracle.SPOOL_ATTRVAL_WAIT
 
-    if p==1:
-        oracle=parsed_yaml_file["oracle_parametros"]
+#     if p==1:
+#         oracle=parsed_yaml_file["oracle_parametros"]
 
-    if p==2:
-        oracle=parsed_yaml_file["oracle_formatos"]
+#     if p==2:
+#         oracle=parsed_yaml_file["oracle_formatos"]
 
-    if p==3:
-        oracle=parsed_yaml_file["oracle_server"]
+#     if p==3:
+#         oracle=parsed_yaml_file["oracle_server"]
 
-    dns=oracle['host']
-    userdb=oracle['user']
-    passw=oracle['passwd']
+#     dns=oracle['host']
+#     userdb=oracle['user']
+#     passw=oracle['passwd']
 
-    pool = cx_Oracle.SessionPool(user=userdb,  #os.environ.get("PYTHON_USERNAME"),
-                                password=passw, #os.environ.get("PYTHON_PASSWORD"),
-                                dsn=dns, #os.environ.get("PYTHON_CONNECTSTRING"),
-                                min=pool_min,
-                                max=pool_max,
-                                increment=pool_inc,
-                                threaded=True,
-                                getmode=pool_gmd,
-                                sessionCallback=init_session)
-    return pool
+#     pool = cx_Oracle.SessionPool(user=userdb,  #os.environ.get("PYTHON_USERNAME"),
+#                                 password=passw, #os.environ.get("PYTHON_PASSWORD"),
+#                                 dsn=dns, #os.environ.get("PYTHON_CONNECTSTRING"),
+#                                 min=pool_min,
+#                                 max=pool_max,
+#                                 increment=pool_inc,
+#                                 threaded=True,
+#                                 getmode=pool_gmd,
+#                                 sessionCallback=init_session)
+#     return pool
 
-def init_session(connection, requestedTag_ignored):
-    cursor = connection.cursor()
-    cursor.execute("""
-        ALTER SESSION SET
-        TIME_ZONE = 'UTC'
-        NLS_DATE_FORMAT = 'YYYY-MM-DD HH24:MI'""")
+# def init_session(connection, requestedTag_ignored):
+#     cursor = connection.cursor()
+#     cursor.execute("""
+#         ALTER SESSION SET
+#         TIME_ZONE = 'UTC'
+#         NLS_DATE_FORMAT = 'YYYY-MM-DD HH24:MI'""")
