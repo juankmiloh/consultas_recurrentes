@@ -61,9 +61,9 @@ class ConsultaRepository:
         header_mat=header.split(';')
         OutputArray=[]
 
-        file = pathfile + '\\' + filename + '.csv'
+        file = pathfile + filename + '.csv'
 
-        with open('src\\' + file,'w', newline='') as csvfile:
+        with open('src/' + file,'w', newline='') as csvfile:
             writer=csv.DictWriter(csvfile,fieldnames=header_mat,delimiter=";")
             writer.writeheader()
          
@@ -79,4 +79,5 @@ class ConsultaRepository:
         connection.close()
                 
         # return OutputArray
+        print(file)
         return send_file(file, as_attachment=True)

@@ -118,8 +118,8 @@ export default {
         // password: '123456'
         // username: 'jherreraa@superservicios.gov.co',
         // password: '123456'
-        username: '',
-        password: ''
+        // username: '',
+        // password: ''
       },
       loginRules: {
         username: [
