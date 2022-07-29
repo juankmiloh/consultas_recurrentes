@@ -20,7 +20,7 @@ def consulta_detalle(consulta_service: ConsultaService, consulta_repository: Con
 def shortexecution(consulta_service: ConsultaService, consulta_repository: ConsultaRepository):
     procedimiento = request.args.get('procedimiento', default=0, type=str)
     ano = request.args.get('ano', default=0, type=int)
-    mes = request.args.get('mes', default=0, type=int)
+    mes = request.args.get('mes', default=[], type=str)
     idempresa = request.args.get('idempresa', default=0, type=int)
     idconsulta = request.args.get('idconsulta', default=0, type=int)
     # return json.dumps(consulta_service.get_shortexecution(consulta_repository, procedimiento, ano, mes, idempresa, idconsulta))

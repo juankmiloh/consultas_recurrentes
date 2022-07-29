@@ -10,4 +10,5 @@ servicio_controller, \
 consulta_controller, \
 empresa_controller, \
 usuarios_controller, \
-dependencia_controller
+dependencia_controller, \
+prueba_controller

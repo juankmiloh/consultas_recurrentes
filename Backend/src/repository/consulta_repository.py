@@ -28,9 +28,9 @@ class ConsultaRepository:
         return vcon
     
     def get_shortexecution_bd(self, items):
-        # print('-------------------------------------')
-        # print('* items -> ', items)
-        # print('-------------------------------------')
+        print('-------------------------------------')
+        print('* items -> ', items)
+        print('-------------------------------------')
         yaml_file = open("src/sources/config.yaml", 'r')
         parsed_yaml_file = yaml.load(yaml_file, Loader=yaml.FullLoader)
         connection = self.db.acquire()
@@ -47,7 +47,10 @@ class ConsultaRepository:
         refCursorProc = connection.cursor()
 
         if proceso==1:
-            cursor.callproc(items['procedimiento'], [items['ano'], items['mes'] ,refCursorProc])
+            print('-------------------------------------')
+            print(items['mes'])
+            print('-------------------------------------')
+            cursor.callproc(items['procedimiento'], [items['ano'], *items['mes'] ,refCursorProc])
             filename=prefijo+str(items['ano'])+'_'+str(items['mes'])
             vser = refCursorProc.fetchall()
 

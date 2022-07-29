@@ -35,7 +35,8 @@ export const CONSTANTS = {
             prop: 'mes',
             label: 'Mes',
             placeholder: 'Seleccione un mes',
-            disabled: false
+            disabled: false,
+            multiple: true
         }
     ],
     rulesFormItem: {

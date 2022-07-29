@@ -7,12 +7,14 @@ class ConsultaService:
 
     def get_consulta(self, consulta_repository: ConsultaRepository, idServicio):
         consulta = []
-        data = consulta_repository.get_consulta_bd(idServicio)
+        data = consulta_repository.get_consulta_bd(idServicio) 
+        
         for result in data:
             consulta.append(
                 {
                     'value':result[0],
-                    'option':result[1]
+                    'option':result[1],
+                    'criterio':result[3]
                 }
             )
         return consulta

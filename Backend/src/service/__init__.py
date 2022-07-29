@@ -6,6 +6,7 @@ from .consulta_service import ConsultaService
 from .empresa_service import EmpresaService
 from .usuarios_service import UsuariosService
 from .dependencia_service import DependenciaService
+from .prueba_service import PruebaService
 
 
 class ServiceModule(Module):
@@ -15,9 +16,12 @@ class ServiceModule(Module):
         empresa_service = EmpresaService()
         usuarios_service = UsuariosService()
         dependencia_service = DependenciaService()
+        prueba_service = PruebaService()
 
         binder.bind(ServicioService, to=servicio_service, scope=singleton)
         binder.bind(ConsultaService, to=consulta_service, scope=singleton)
         binder.bind(EmpresaService, to=empresa_service, scope=singleton)
         binder.bind(UsuariosService, to=usuarios_service, scope=singleton)
         binder.bind(DependenciaService, to=dependencia_service, scope=singleton)
+        binder.bind(PruebaService, to=prueba_service, scope=singleton)
+        

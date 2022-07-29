@@ -29,7 +29,8 @@
                   class="control-modal"
                   clearable
                   :disabled="component.disabled"
-                  @change="validateSelect(component.prop, $event)"
+                  :multiple="component.multiple"
+                  @change="validateSelect(component.prop, $event,datacontrol[component.prop])"
                 >
                   <span>
                     <el-option
@@ -85,6 +86,7 @@ import { CONSTANTS } from './constants/constants'
 import { getServicio } from '@/api/recurrentes/servicio'
 import { getConsulta, getConsultaDetalle } from '@/api/recurrentes/consulta'
 import { getEmpresa } from '@/api/recurrentes/empresa'
+import { getPrueba } from '@/api/recurrentes/prueba'
 
 export default {
   data() {
@@ -112,20 +114,35 @@ export default {
     this.getAllServicios()
     this.getAnios()
     this.getMes()
+    this.getPruebas()
   },
   methods: {
     handleSelectionChange(val) {
       // console.log(val)
       this.multipleSelection = val
     },
-    validateSelect(action, param) {
-      // console.log('action >> ', action, ' >> param >> ', param)
+    validateSelect(action, param, component) {
+      console.log('action >> ', action, ' >> param >> ', param)
+      // console.log('componente >> ', component)
+      // objCriterio permite obtener el idCriterio de la consulta para determinar la obligatoriedad del parametro empresa, cuando es 1 no es obligatorio dicho parametro
+      const objCriterio = component.find(consulta => consulta.value === param)
+      // console.log('criterio >> ', criterio)
+
       if (action === 'servicio') {
         this.model.consulta = ''
         this.model.idempresa = ''
         this.getConsultaServicio(param)
         this.getEmpresas(param)
       } if (action === 'consulta') {
+        // console.log('criterio >> ', objCriterio.criterio)
+        this.domcomponents[2].disabled = false
+        this.rulesform.idempresa[0].required = true
+
+        // Esta condicional se establece para deshabilitar la lista relacionada a la empresa y evitar la activacion de la regla de obligatoriedad
+        if (objCriterio.criterio === 1) {
+          this.domcomponents[2].disabled = true
+          this.rulesform.idempresa[0].required = false
+        }
         this.getDetalleCategoria(param)
       } else {
         return 0
@@ -133,7 +150,9 @@ export default {
     },
     getAnios() {
       this.datacontrol.ano = []
-      for (let index = 2013; index <= 2022; index++) {
+      const today = new Date()
+      const year = today.getFullYear()
+      for (let index = 2013; index <= year; index++) {
         this.datacontrol.ano.unshift({ value: index, option: index })
       }
     },
@@ -171,6 +190,13 @@ export default {
         this.datacontrol.idempresa = response
       })
     },
+    async getPruebas() {
+      // console.log('idservicio :>> ', idservicio)
+      await getPrueba().then((response) => {
+        console.log('response prueba :>> ', response)
+        // this.datacontrol.idempresa = response
+      })
+    },
     async getShortexecution(iterator) {
       // console.log('getShortexecution -> ', iterator)
       const url = `${process.env.VUE_APP_BASE_API}/shortexecution?procedimiento=${iterator.procedimiento}&ano=${this.model.ano}&mes=${this.model.mes}&idempresa=${this.model.idempresa}&idconsulta=${iterator.id_detalle}`
@@ -178,8 +204,11 @@ export default {
       window.open(url, '_self') // Linea para llamar el servicio que genera el .CSV
     },
     async handleForm(formName) {
+      // se activa cuando se presiona el boton ejecutar y valida las reglas
       this.$refs[formName].validate((valid) => {
         if (valid) {
+          // console.log('model :>> ', this.model)
+
           if (this.multipleSelection.length) {
             let contador = 0
             for (const iterator of this.multipleSelection) { // Se recorre la cantidad de filas seleccionadas en la tabla
