@@ -26,39 +26,42 @@ class ConsultaRepository:
         connection.close()
 
         return vcon
+
     
     def get_shortexecution_bd(self, items):
-        print('-------------------------------------')
-        print('* items -> ', items)
-        print('-------------------------------------')
         yaml_file = open("src/sources/config.yaml", 'r')
         parsed_yaml_file = yaml.load(yaml_file, Loader=yaml.FullLoader)
+       
         connection = self.db.acquire()
         cursor = connection.cursor()
-        refCursorfor = connection.cursor()  
+        refCursorfor = connection.cursor()
 
         cursor.callproc('SP_CONS_PAR_CONSULTAS', [items['idconsulta'],refCursorfor])
         vpar = refCursorfor.fetchall()
-
+        
         for row in vpar:
             proceso=row[0]
             prefijo=row[1]
 
         refCursorProc = connection.cursor()
 
-        if proceso==1:
+        if proceso==1:            
+           
             print('-------------------------------------')
-            print(items['mes'])
+            print('* items -> ', str(items))
             print('-------------------------------------')
-            cursor.callproc(items['procedimiento'], [items['ano'], *items['mes'] ,refCursorProc])
+            #cursor.callproc(items['procedimiento'], [items['ano'], '1,4,6' ,refCursorProc])
+            #cursor.callproc(items['procedimiento'], [items['ano'], str(items) ,refCursorProc])
+            cursor.callproc('SP_CONS_CON_PAT_CROM', [items['ano'],str(items['mes']),refCursorProc])
             filename=prefijo+str(items['ano'])+'_'+str(items['mes'])
             vser = refCursorProc.fetchall()
+            print(str(len(vser)))
 
         if proceso==2:
             cursor.callproc(items['procedimiento'], [items['idempresa'], items['mes'], items['ano'], refCursorProc])
             filename=prefijo+str(items['idempresa'])+'_'+str(items['ano'])+'_'+str(items['mes'])
             vser = refCursorProc.fetchall()
-                
+            
         pathfile=parsed_yaml_file["path"]["dir_target"]
         header=parsed_yaml_file["headers"][items['procedimiento']]
         header_mat=header.split(';')
